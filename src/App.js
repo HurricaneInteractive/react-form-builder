@@ -2,22 +2,38 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import FormBuilder, { string, number } from "./form-builder/FormBuilder"
+
 function App() {
+
+  const form = FormBuilder({
+    structure: {
+      name: string(),
+      email: string({ type: "email", value: "abc@abc.com" }),
+      age: number(),
+      // tooYoungMessage: msg("", { when: ['age', '<', 18] }),
+      // optional
+      // submit: submit("Send email")
+    },
+    events: {
+      submit: (state) => {
+        console.log("Submit Form", { state })
+      },
+      change: (state) => {
+        console.log("On Change", { state })
+      }
+    },
+  })
+
+  console.log(form)
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <div>
+          {form.render()}
+        </div>
       </header>
     </div>
   );
