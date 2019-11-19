@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import FormBuilder, { string, number } from "./form-builder/FormBuilder"
+import FormBuilder, { string, number } from "./form-builder"
 
 function App() {
 
@@ -24,8 +24,6 @@ function App() {
       }
     },
   })
-
-  console.log(form)
 
   return (
     <div className="App">
