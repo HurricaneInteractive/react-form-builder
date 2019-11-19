@@ -1,15 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
-const Form = ({ structure, initialState, onSubmit, onChange }) => {
-  const [state, setState] = useState({ ...initialState })
-
-  useEffect(() => {
-    onChange(state)
-  }, [onChange, state])
-
+const Form = ({ structure, state, onSubmit, onChange }) => {
   const onInputChange = (e) => {
-    const { target: { name, value } } = e
-    setState(prevState => ({ ...prevState, [name]: value }));
+    onChange(e)
   }
 
   const renderStructure = () => {
