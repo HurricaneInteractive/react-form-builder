@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import submit from "../input-types/submit"
 
 const Form = ({ structure, state, onSubmit, onChange }) => {
   const onInputChange = (e) => {
     onChange(e)
   }
 
+  const getKey = (key, idx) => `${key}--${idx}`
+
   const renderStructure = () => {
     return Object.keys(structure).map((key, i) => {
       if (key === "submit") {
-        return <></>
+        return <Fragment key={getKey(key, i)}></Fragment>
       }
 
       const {
@@ -21,7 +24,7 @@ const Form = ({ structure, state, onSubmit, onChange }) => {
       return (
         <Component
           {...props}
-          key={key}
+          key={getKey(key, i)}
           value={state[key]}
           name={key}
           onChange={(e) => {
@@ -32,16 +35,19 @@ const Form = ({ structure, state, onSubmit, onChange }) => {
     })
   }
 
+  const renderSubmit = () => {
+    let props = structure.submit ? structure.submit : submit()
+
+    return <input {...props} />
+  }
+
   return (
     <form onSubmit={(e) => {
       e.preventDefault();
       onSubmit(state)
     }}>
-      This is the form
-
       {renderStructure()}
-
-      <input type="submit" value="Submit"/>
+      {renderSubmit()}
     </form>
   )
 }
