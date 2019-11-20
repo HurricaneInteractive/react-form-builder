@@ -13,7 +13,11 @@ const FormBuilder = ({ structure, events }) => {
 
   const onInputChange = (e) => {
     const { target: { name, value } } = e
-    setState(prevState => ({ ...prevState, [name]: value }));
+
+    setState(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
 
     if (events.change) {
       events.change(state)
