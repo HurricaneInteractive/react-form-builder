@@ -3,11 +3,11 @@ type HTMLAttributes<T> = {}
 
 type operations = "=="|"<"|">"|"!="|"<="|">="
 
-interface IStructureObject extends HTMLAttributes<HTMLInputElement> {
+export interface IStructureObject extends HTMLAttributes<HTMLInputElement> {
   when: [string, operations, any]
 }
 
-interface IFormBuilder {
+export interface IFormBuilder {
   structure: {
     [key: string]: IStructureObject
   }
