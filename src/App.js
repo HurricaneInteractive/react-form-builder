@@ -1,8 +1,7 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-import FormBuilder, { string, number } from "./form-builder"
+import FormBuilder, { string, number, text, submit } from "./form-builder"
 
 function App() {
 
@@ -11,9 +10,10 @@ function App() {
       name: string(),
       email: string({ type: "email", value: "abc@abc.com" }),
       age: number(),
+      message: text({ rows: 6 }),
       // tooYoungMessage: msg("", { when: ['age', '<', 18] }),
       // optional
-      // submit: submit("Send email")
+      submit: submit({ value: "Send Email" })
     },
     events: {
       submit: (state) => {
@@ -27,12 +27,9 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <div>
-          {form.render()}
-        </div>
-      </header>
+      <main>
+        {form.render()}
+      </main>
     </div>
   );
 }
