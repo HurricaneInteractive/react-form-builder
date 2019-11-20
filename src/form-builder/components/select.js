@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Input = (props) => {
+const Select = (props) => {
   return (
     <input {...props} />
   )
 }
 
-export default Input
+export default Select
