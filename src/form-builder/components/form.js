@@ -8,18 +8,38 @@ const Form = ({ structure, state, onSubmit, onChange }) => {
 
   const getKey = (key, idx) => `${key}--${idx}`
 
+  const noComponent = (key) => <Fragment key={key} />
+
   const renderStructure = () => {
     return Object.keys(structure).map((key, i) => {
       if (key === "submit") {
-        return <Fragment key={getKey(key, i)}></Fragment>
+        return noComponent(getKey(key, i))
       }
 
       const {
+        typeof: type,
         component: Component,
         default: defaultValue,
         name,
+        when,
         ...props
       } = structure[key]
+
+      if (typeof when !== "undefined") {
+        if (when.length >= 3) {
+          const [key, operation, value] = when
+          if (state[key]) {
+            // eslint-disable-next-line no-eval
+            if (eval(`${state[key]} ${operation} ${value}`)) {
+              return noComponent(getKey(key, i))
+            }
+          }
+        }
+      }
+
+      if (type === "msg") {
+        return <Component {...props} key={getKey(key, i)} />
+      }
 
       return (
         <Component
