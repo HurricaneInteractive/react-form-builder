@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-import FormBuilder, { string, number, text, submit } from "./form-builder"
+import FormBuilder, { string, number, text, submit, msg } from "./form-builder"
 
 function App() {
 
@@ -11,7 +11,7 @@ function App() {
       email: string({ type: "email", value: "abc@abc.com" }),
       age: number(),
       message: text({ rows: 6 }),
-      // tooYoungMessage: msg("", { when: ['age', '<', 18] }),
+      tooYoungMessage: msg("Some type of markup", { when: ['age', '<', 18] }),
       // optional
       submit: submit({ value: "Send Email" })
     },
