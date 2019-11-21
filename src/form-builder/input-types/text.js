@@ -1,9 +1,8 @@
 import Textarea from "../components/textarea"
 
-const text = (props) => {
-  props = props ? props : {}
-
+const text = (props = {}) => {
   return {
+    typeof: 'text',
     component: Textarea,
     default: props.value || "",
 

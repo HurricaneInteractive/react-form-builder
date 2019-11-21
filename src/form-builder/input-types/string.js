@@ -1,9 +1,8 @@
 import Input from "../components/input"
 
-const string = (props) => {
-  props = props ? props : {}
-
+const string = (props = {}) => {
   let structure = {
+    typeof: 'string',
     component: Input,
     default: props.value || "",
     type: "text",

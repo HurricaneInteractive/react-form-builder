@@ -1,7 +1,6 @@
-const submit = (props) => {
-  props = props ? props : {}
-
+const submit = (props = {}) => {
   return {
+    typeof: 'submit',
     type: "submit",
     value: props.value || "Submit"
   }
