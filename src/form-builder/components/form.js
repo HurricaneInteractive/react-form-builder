@@ -13,10 +13,10 @@ const Form = ({ structure, state, onSubmit, onChange }) => {
   const performWhenCheck = (when) => {
     if (typeof when !== "undefined") {
       if (when.length >= 3) {
-        const [stateKey, operation, value] = when
-        if (state[stateKey]) {
+        const [key, operation, value] = when
+        if (state[key]) {
           // eslint-disable-next-line no-eval
-          if (!eval(`${state[stateKey]} ${operation} ${value}`)) {
+          if (!eval(`${state[key]} ${operation} ${value}`)) {
             return true
           }
         }
@@ -51,13 +51,13 @@ const Form = ({ structure, state, onSubmit, onChange }) => {
 
       return (
         <Component
-          {...props}
           key={getKey(key, i)}
           value={state[key]}
           name={key}
           onChange={(e) => {
             onInputChange(e)
           }}
+          {...props}
         />
       )
     })
