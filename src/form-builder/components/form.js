@@ -10,6 +10,22 @@ const Form = ({ structure, state, onSubmit, onChange }) => {
 
   const noComponent = (key) => <Fragment key={key} />
 
+  const performWhenCheck = (when) => {
+    if (typeof when !== "undefined") {
+      if (when.length >= 3) {
+        const [stateKey, operation, value] = when
+        if (state[stateKey]) {
+          // eslint-disable-next-line no-eval
+          if (!eval(`${state[stateKey]} ${operation} ${value}`)) {
+            return true
+          }
+        }
+      }
+    }
+
+    return false
+  }
+
   const renderStructure = () => {
     return Object.keys(structure).map((key, i) => {
       if (key === "submit") {
@@ -25,16 +41,8 @@ const Form = ({ structure, state, onSubmit, onChange }) => {
         ...props
       } = structure[key]
 
-      if (typeof when !== "undefined") {
-        if (when.length >= 3) {
-          const [key, operation, value] = when
-          if (state[key]) {
-            // eslint-disable-next-line no-eval
-            if (!eval(`${state[key]} ${operation} ${value}`)) {
-              return noComponent(getKey(key, i))
-            }
-          }
-        }
+      if (performWhenCheck(when)) {
+        return noComponent(getKey(key, i))
       }
 
       if (type === "msg") {
