@@ -3,6 +3,8 @@ import './App.css';
 
 import FormBuilder, { string, number, text, submit, msg } from "./form-builder"
 
+const TestMessage = () => <p>Age must be above <strong>17</strong></p>
+
 function App() {
 
   const form = FormBuilder({
@@ -11,7 +13,7 @@ function App() {
       email: string({ type: "email", value: "abc@abc.com" }),
       age: number(),
       message: text({ rows: 6 }),
-      tooYoungMessage: msg("Some type of markup", { when: ['age', '<', 18] }),
+      tooYoungMessage: msg(TestMessage, { when: ['age', '<', 18] }),
       // optional
       submit: submit({ value: "Send Email" })
     },
