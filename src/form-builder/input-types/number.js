@@ -1,11 +1,16 @@
-import string from "./string"
+import Input from "../components/input"
 
 const number = (props = {}) => {
-  return string({
+  let structure = {
+    typeof: 'string',
+    component: Input,
+    default: props.value || 0,
     type: "number",
-    default: 0,
+
     ...props
-  })
+  }
+
+  return structure
 }
 
 export default number
