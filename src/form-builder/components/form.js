@@ -30,7 +30,7 @@ const Form = ({ structure, state, onSubmit, onChange }) => {
           const [key, operation, value] = when
           if (state[key]) {
             // eslint-disable-next-line no-eval
-            if (eval(`${state[key]} ${operation} ${value}`)) {
+            if (!eval(`${state[key]} ${operation} ${value}`)) {
               return noComponent(getKey(key, i))
             }
           }
