@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import submit from "../input-types/submit"
 
-const Form = ({ structure, state, onSubmit, onChange }) => {
+const Form = ({ structure: formStruct, state, onSubmit, onChange }) => {
   const onInputChange = (e) => {
     onChange(e)
   }
@@ -26,7 +26,7 @@ const Form = ({ structure, state, onSubmit, onChange }) => {
     return false
   }
 
-  const renderStructure = () => {
+  const renderStructure = (structure = formStruct) => {
     return Object.keys(structure).map((key, i) => {
       if (key === "submit") {
         return noComponent(getKey(key, i))
@@ -41,7 +41,14 @@ const Form = ({ structure, state, onSubmit, onChange }) => {
         ...props
       } = structure[key]
 
+
       if (performWhenCheck(when)) {
+        return noComponent(getKey(key, i))
+      }
+
+      if (type === "fieldset") {
+        console.log(structure[key])
+        // Render fieldset structure
         return noComponent(getKey(key, i))
       }
 
@@ -64,7 +71,7 @@ const Form = ({ structure, state, onSubmit, onChange }) => {
   }
 
   const renderSubmit = () => {
-    let props = structure.submit ? structure.submit : submit()
+    let props = formStruct.submit ? formStruct.submit : submit()
 
     return <input {...props} />
   }
