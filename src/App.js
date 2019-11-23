@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-import FormBuilder, { string, number, text, submit, msg } from "./form-builder"
+import FormBuilder, { string, number, text, submit, msg, fieldset } from "./form-builder"
 
 const TestMessage = () => <p>Age must be above <strong>17</strong></p>
 
@@ -9,6 +9,12 @@ function App() {
 
   const form = FormBuilder({
     structure: {
+      grouping: fieldset({
+        structure: {
+          name: string()
+        },
+        props: {}
+      }),
       name: string(),
       email: string({ type: "email", value: "abc@abc.com" }),
       age: number(),
