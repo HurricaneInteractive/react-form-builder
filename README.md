@@ -1,3 +1,11 @@
+# IMPORTANT!!!!
+
+This project has been moved to [voltage-form-builder](https://github.com/HurricaneInteractive/voltage-form-builder).
+
+---
+---
+---
+
 # React Form Builder
 
 > This project is still a **WIP**, I am currently in the "exploring" and "hacking" phase.
